@@ -1,5 +1,5 @@
 """
-After following the given steps,
+SHAPE DETECTION and ANALYSIS:
 you will be able to detect shapes from your image, 
 and locate the centers on them.
 
