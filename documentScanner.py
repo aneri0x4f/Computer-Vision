@@ -1,6 +1,5 @@
 """
-Document scanner is here!!
-
+4 point prespective transform
 Requirements:
 - python
 - basic knowledge on usage of comand line
@@ -10,10 +9,8 @@ Approach:
 - get coordinates of the vertex from this countour
 - order the coordinates (IMPORTANT)
 - transform
-Experimenting:
-- Rotating image(comented code - line 36)
-- threshold alue for filter(line 136)
-Image sources: 
+
+Image source: 
 - https://media-cdn.tripadvisor.com/media/photo-s/06/cf/0c/fe/our-bill.jpg
 - http://clipart-library.com/images_k/sticky-note-transparent-background/sticky-note-transparent-background-21.png
 """
@@ -34,7 +31,7 @@ ap.add_argument("-i", "--image", required=True, help="path to source image")
 args = vars(ap.parse_args())
 
 image = cv2.imread(args["image"])
-# image = imutils.rotate_bound(image, 15)
+# image = imutils.rotate_bound(image, 35)
 image = imutils.resize(image, width = 700)
 cv2.imshow("image", image)
 
@@ -136,5 +133,5 @@ warped = cv2.cvtColor(warped, cv2.COLOR_BGR2GRAY)
 T = threshold_local(warped, 51, offset = 10, method = "gaussian")
 warped = (warped > T).astype("uint8") * 255
 
-cv2.imshow("birds eye view", warped)
+cv2.imshow("scaned doc", warped)
 cv2.waitKey(0)
