@@ -59,7 +59,7 @@ def getCoordinates(image, cs):
             if(i % 2 == 0):
                 x = n[i]
                 y = n[i + 1]
-                vertices.append([x, y])
+                vertices.append((x, y))
                 
                 # OPTIONAL:
                 # printing coordinates
