@@ -44,35 +44,41 @@ thresh = cv2.threshold(blur, 60, 255, cv2.THRESH_BINARY)[1]
 cs = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 cs = imutils.grab_contours(cs)
 
-vertices = []
-for c in cs :
-    # approxPolyDP(): to perform an approximation of a shape of a contour.
-    approx = cv2.approxPolyDP(c, 0.009 * cv2.arcLength(c, True), True)
-  
-    # draws boundary of contours
-    cv2.drawContours(image, [approx], 0, (0, 0, 255), 5) 
-  
-    # flatten the array containing the co-ordinates of the vertices.
-    n = approx.ravel() 
-  
-    for i in range(len(n)) :
-        if(i % 2 == 0):
-            x = n[i]
-            y = n[i + 1]
-            vertices.append([x, y])
+def getCoordinates(image, cs):
 
-            # String containing the co-ordinates.
-            coord = str(x) + " " + str(y) 
+    vertices = []
+    for c in cs :
+
+        # approxPolyDP(): to perform an approximation of a shape of a contour.
+        approx = cv2.approxPolyDP(c, 0.009 * cv2.arcLength(c, True), True)
     
-            if(i == 0):
-                # text on topmost co-ordinate.
-                cv2.putText(image, "Arrow tip", (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (255, 0, 0)) 
-            else:
-                # text on remaining co-ordinates.
-                cv2.putText(image, coord, (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 255, 0)) 
+        # draws boundary of contours
+        cv2.drawContours(image, [approx], 0, (0, 0, 255), 5) 
+    
+        # flatten the array containing the co-ordinates of the vertices.
+        n = approx.ravel() 
+    
+        for i in range(len(n)) :
+            if(i % 2 == 0):
+                x = n[i]
+                y = n[i + 1]
+                vertices.append([x, y])
+                
+                # OPTIONAL:
+                # printing coordinates
+                # String containing the co-ordinates.
+                coord = str(x) + " " + str(y) 
         
+                if(i == 0):
+                    # text on topmost co-ordinate.
+                    cv2.putText(image, "Arrow tip", (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (255, 0, 0)) 
+                else:
+                    # text on remaining co-ordinates.
+                    cv2.putText(image, coord, (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 255, 0)) 
 
-print(vertices)           
+        return vertices            
+
+print(getCoordinates(image, cs))           
 cv2.imshow("image", image)
 
 cv2.waitKey(0)
