@@ -1,5 +1,5 @@
 """
-4 point prespective transform
+document scanner is here!!
 Requirements:
 - python
 - basic knowledge on usage of comand line
@@ -70,7 +70,7 @@ def order_points(pts):
     """
     We want a list(numpy array to be precise) of points with following arrangement:
     1st: top-left,
-	2nd: top-right
+    2nd: top-right
     3rd: bottom-right
     4th: bottom-left 
 
