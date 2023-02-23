@@ -10,3 +10,10 @@ homogeneous coordinates also allows to represent infinity: (x,y,z,0)=x,y,z0 in 3
 
 ## Bidirectional Reflectance Distribution Function BRDF
 The most general model of light scattering is the bidirectional reflectance distribution function (BRDF). Relative to some local coordinate frame on the surface, the BRDF is a four dimensional function that describes how much of each wavelength arriving at an incident direction is emitted in a reflected direction.
+## Some powerful pre-trained models
+### Image classification
+* VGG-16
+* ResNet50
+* Inceptionv3
+* EfficientNet
+
